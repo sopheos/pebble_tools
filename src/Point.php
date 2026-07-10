@@ -11,8 +11,8 @@ class Point
 {
     const EARTH_RADIUS = 6378137;
 
-    public $lat;
-    public $lon;
+    public float $lat = 0;
+    public float $lon = 0;
 
     // -------------------------------------------------------------------------
     // Construct
@@ -269,7 +269,8 @@ class Point
         }
 
         return [
-            self::fromRadians($min_lat, $min_lon), self::fromRadians($max_lat, $max_lon)
+            self::fromRadians($min_lat, $min_lon),
+            self::fromRadians($max_lat, $max_lon)
         ];
     }
 
@@ -395,7 +396,16 @@ class Point
     private function insideGeoCoordinates(array $coords)
     {
         if (!$coords) return false;
+
         $poly = array_shift($coords);
+
+        // Le point est dans la liste des coordonnées
+        foreach ($poly as $p) {
+            if ($p[0] === $this->lon &&  $p[1] = $this->lat) {
+                return true;
+            }
+        }
+
         $inside = self::insideVertices($this->lon, $this->lat, $poly);
 
         // Holes
