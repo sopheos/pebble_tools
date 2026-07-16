@@ -401,7 +401,7 @@ class Point
 
         // Le point est dans la liste des coordonnées
         foreach ($poly as $p) {
-            if ($p[0] === $this->lon &&  $p[1] = $this->lat) {
+            if ($p[0] === $this->lon &&  $p[1] === $this->lat) {
                 return true;
             }
         }
